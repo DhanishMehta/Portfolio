@@ -1,0 +1,43 @@
+[
+  { "name": "Java", "icon": "java", "level": "Advanced", "proficiency": 85 },
+  { "name": "Python", "icon": "python", "level": "Intermediate", "proficiency": 70 },
+  { "name": "JavaScript", "icon": "javascript", "level": "Advanced", "proficiency": 88 },
+  { "name": "TypeScript", "icon": "typescript", "level": "Advanced", "proficiency": 90 },
+  { "name": "C++", "icon": "cpp", "level": "Intermediate", "proficiency": 65 },
+
+  { "name": "Angular", "icon": "angular", "level": "Advanced", "proficiency": 92 },
+  { "name": "React", "icon": "react", "level": "Intermediate", "proficiency": 70 },
+  { "name": "NgRx", "icon": "ngrx", "level": "Intermediate", "proficiency": 68 },
+  { "name": "RxJS", "icon": "rxjs", "level": "Advanced", "proficiency": 80 },
+  { "name": "TailwindCSS", "icon": "tailwind", "level": "Advanced", "proficiency": 85 },
+  { "name": "PrimeNG", "icon": "primeng", "level": "Intermediate", "proficiency": 70 },
+
+  { "name": "Quarkus", "icon": "quarkus", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Spring Boot", "icon": "spring", "level": "Intermediate", "proficiency": 72 },
+  { "name": "Node.js", "icon": "nodejs", "level": "Intermediate", "proficiency": 75 },
+  { "name": "REST APIs", "icon": "api", "level": "Advanced", "proficiency": 80 },
+  { "name": "Apache Camel", "icon": "camel", "level": "Intermediate", "proficiency": 65 },
+
+  { "name": "MongoDB", "icon": "mongodb", "level": "Intermediate", "proficiency": 70 },
+  { "name": "MySQL", "icon": "mysql", "level": "Intermediate", "proficiency": 70 },
+  { "name": "SQL", "icon": "sql", "level": "Intermediate", "proficiency": 70 },
+
+  { "name": "Docker", "icon": "docker", "level": "Intermediate", "proficiency": 65 },
+  { "name": "Kubernetes", "icon": "kubernetes", "level": "Beginner", "proficiency": 55 },
+  { "name": "Jenkins", "icon": "jenkins", "level": "Intermediate", "proficiency": 65 },
+  { "name": "Git", "icon": "git", "level": "Advanced", "proficiency": 85 },
+  { "name": "AWS", "icon": "aws", "level": "Beginner", "proficiency": 50 },
+  { "name": "Azure", "icon": "azure", "level": "Beginner", "proficiency": 50 },
+  { "name": "CI/CD", "icon": "cicd", "level": "Intermediate", "proficiency": 70 },
+
+  { "name": "JUnit", "icon": "junit", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Mockito", "icon": "mockito", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Jest", "icon": "jest", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Karma", "icon": "karma", "level": "Intermediate", "proficiency": 65 },
+  { "name": "Jasmine", "icon": "jasmine", "level": "Intermediate", "proficiency": 65 },
+
+  { "name": "Leadership", "icon": "leader", "level": "Soft Skill", "proficiency": 80 },
+  { "name": "Team Player", "icon": "team", "level": "Soft Skill", "proficiency": 85 },
+  { "name": "Curious", "icon": "curious", "level": "Soft Skill", "proficiency": 80 },
+  { "name": "Problem Solver", "icon": "problem", "level": "Soft Skill", "proficiency": 85 }
+]

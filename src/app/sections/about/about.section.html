@@ -1,0 +1,52 @@
+<section id="about" class="py-20 bg-white dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div>
+        <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
+          About Me
+        </h2>
+        <div class="space-y-4 text-lg text-gray-600 dark:text-gray-300">
+          <p>
+            I'm a passionate software engineer with a love for creating innovative web solutions. 
+            With expertise in modern frontend frameworks and a strong foundation in software engineering principles, 
+            I enjoy turning complex problems into simple, beautiful solutions.
+          </p>
+          <p>
+            When I'm not coding, you can find me exploring new technologies, contributing to open-source projects, 
+            or sharing knowledge with the developer community. I believe in continuous learning and staying up-to-date 
+            with the latest industry trends.
+          </p>
+        </div>
+
+        <!-- Highlights -->
+        <div class="grid grid-cols-2 gap-4 mt-8">
+          <div 
+            *ngFor="let highlight of highlights" 
+            class="flex items-center space-x-3 p-3 bg-gray-50 dark:bg-gray-700 rounded-lg"
+          >
+            <span class="text-2xl">{{ highlight.icon }}</span>
+            <div class="min-w-0">
+              <p class="text-sm text-gray-500 dark:text-gray-400">{{ highlight.label }}</p>
+              <p class="font-semibold text-gray-900 dark:text-white break-words break-all">{{ highlight.value }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Profile Image -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <div class="w-80 h-80 rounded-full bg-gradient-to-br from-green-400 to-blue-600 p-1">
+            <div class="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <!-- Placeholder for profile image -->
+              <svg class="w-32 h-32 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

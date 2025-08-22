@@ -1,0 +1,71 @@
+<section id="skills" class="py-20 bg-gray-50 dark:bg-gray-900">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+		<!-- Section Header -->
+		<div class="text-center mb-16">
+			<h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+				Skills & Technologies
+			</h2>
+			<p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto mb-8">
+				Here are the technologies and tools I work with to bring ideas to life.
+			</p>
+			
+			<!-- View Toggle -->
+			<div class="flex justify-center">
+				<div class="bg-white dark:bg-gray-800 rounded-lg p-1 shadow-lg border border-gray-200 dark:border-gray-700">
+					<button
+						(click)="toggleView()"
+						class="px-4 py-2 rounded-md text-sm font-medium transition-all duration-200"
+						[class]="viewMode() === 'grid' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'"
+					>
+						<span class="flex items-center gap-2">
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path>
+						</svg>
+						Grid View
+						</span>
+					</button>
+					<button
+						(click)="toggleView()"
+						class="px-4 py-2 rounded-md text-sm font-medium transition-all duration-200"
+						[class]="viewMode() === 'cloud' ? 'bg-blue-600 text-white shadow-md' : 'text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400'"
+					>
+						<span class="flex items-center gap-2">
+							<svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z"></path>
+						</svg>
+						Skill Cloud
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+		<!-- Grid View (Quick Overview only) -->
+		<div *ngIf="viewMode() === 'grid'" class="space-y-8">
+			<div class="bg-white dark:bg-gray-800 rounded-lg p-6 shadow-lg border border-gray-200 dark:border-gray-700">
+				<h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">Quick Overview</h3>
+				<div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
+					<div *ngFor="let skill of skills" 
+						class="text-center p-4 rounded-lg transition-all duration-200 ring-1 ring-transparent hover:scale-[1.02]"
+						[class]="getSkillTheme(skill.icon || skill.name).hover + ' ' + getSkillTheme(skill.icon || skill.name).ring + ' ' + getSkillTheme(skill.icon || skill.name).bgTint">
+						<div class="flex items-center justify-center mb-2">
+							<img 
+								[src]="'assets/icons/' + (skill.icon || skill.name) + '.svg'"
+								(error)="$event.target.src='assets/icons/generic.svg'"
+								alt="{{ skill.name }} icon"
+								class="w-8 h-8 object-contain"
+							/>
+						</div>
+						<div class="text-lg font-semibold" [class]="getSkillTheme(skill.icon || skill.name).text">{{ skill.name }}</div>
+						<div class="text-sm text-gray-600 dark:text-gray-400">{{ skill.level }}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Cloud View -->
+		<div *ngIf="viewMode() === 'cloud'">
+			<app-skill-cloud [skills]="skills"></app-skill-cloud>
+		</div>
+	</div>
+</section>

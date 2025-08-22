@@ -1,0 +1,29 @@
+[
+  {
+    "title": "Vatana",
+    "shortDescription": "Grocery shopping platform with auth, cart, wishlist, payments, and admin dashboard.",
+    "longDescription": "End-to-end grocery platform featuring authentication, product listings, cart & wishlist, Razorpay payments, reviews, and an admin dashboard for inventory and order management.",
+    "image": "assets/images/vatana.png",
+    "tech": ["Angular", "Spring Boot", "MongoDB", "Bootstrap", "Razorpay"],
+    "github": "",
+    "demo": "https://vatana-dhanish.netlify.app/"
+  },
+  {
+    "title": "RecruitMate",
+    "shortDescription": "Automated scheduling for large-scale hiring drives; reduced manual effort by 98%.",
+    "longDescription": "Role management, bulk upload, filtering, error handling, logging, and scalable scheduling integrated with Webex API. Scheduled 600+ interviews saving substantial man-hours.",
+    "image": "assets/images/recruitmate.png",
+    "tech": ["Angular", "Webex API", "PrimeNG", "ExcelJS"],
+    "github": "",
+    "demo": "https://recruitmate-scheduler.netlify.app/"
+  },
+  {
+    "title": "GreenScan",
+    "shortDescription": "Real-time plant disease detection using deep learning.",
+    "longDescription": "TensorFlow-based model with a FastAPI backend and web scraping for dataset enrichment; provides real-time detection and actionable insights for crop health.",
+    "image": "assets/images/greenscan.png",
+    "tech": ["TensorFlow", "Python", "FastAPI", "Web Scraping"],
+    "github": "",
+    "demo": ""
+  }
+]

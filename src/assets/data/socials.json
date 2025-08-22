@@ -1,0 +1,5 @@
+[
+  { "name": "LinkedIn", "icon": "linkedin", "url": "https://www.linkedin.com/in/dhanish-mehta-b850191b5/" },
+  { "name": "GitHub", "icon": "github", "url": "https://github.com/DhanishMehta" },
+  { "name": "Email", "icon": "mail", "url": "mailto:dhanish.workspace@gmail.com" }
+]

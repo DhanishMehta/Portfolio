@@ -1,0 +1,8 @@
+[
+  {
+    "company": "Chubb",
+    "role": "Software Engineer",
+    "duration": "Sept 2023 – Present",
+    "description": "Accelerated insurance product onboarding by 75% via full-stack solutions (Angular, Java, Quarkus, Kubernetes). Built reusable frontend components, raised code coverage to 80%, optimized performance with caching & NgRx (30% faster loads), mentored 10+ juniors, led reviews, contributed to micro-frontend and backend APIs, and built an automated L&D hiring solution reducing manual effort by 98%."
+  }
+]

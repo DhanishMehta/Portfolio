@@ -1,0 +1,56 @@
+<section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-indigo-100 dark:from-gray-900 dark:to-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Content -->
+      <div class="text-center lg:text-left">
+        <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+          Hi, I'm <span class="text-blue-600 dark:text-blue-400">{{ name }}</span>
+        </h1>
+        <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
+          {{ title }}
+        </h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
+          {{ tagline }}
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+          <button 
+            (click)="downloadResume()"
+            class="px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-colors duration-200 flex items-center justify-center gap-2"
+          >
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+            </svg>
+            Download Resume
+          </button>
+          
+          <button 
+            (click)="scrollToContact()"
+            class="px-8 py-3 border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white font-semibold rounded-lg transition-colors duration-200"
+          >
+            Contact Me
+          </button>
+        </div>
+      </div>
+
+      <!-- Profile Image -->
+      <div class="flex justify-center lg:justify-end">
+        <div class="relative">
+          <div class="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1">
+            <div class="w-full h-full rounded-full bg-gray-200 dark:bg-gray-700 flex items-center justify-center">
+              <!-- Placeholder for profile image -->
+              <svg class="w-32 h-32 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path>
+              </svg>
+            </div>
+          </div>
+          
+          <!-- Floating elements for visual appeal -->
+          <div class="absolute -top-4 -right-4 w-8 h-8 bg-yellow-400 rounded-full animate-bounce"></div>
+          <div class="absolute -bottom-4 -left-4 w-6 h-6 bg-pink-400 rounded-full animate-pulse"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

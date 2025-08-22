@@ -1,0 +1,66 @@
+<section id="experience" class="py-20 bg-white dark:bg-gray-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        Work Experience
+      </h2>
+      <p class="text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
+        My professional journey and the companies I've had the pleasure to work with.
+      </p>
+    </div>
+
+    <!-- Experience Timeline -->
+    <div class="relative">
+      <div class="max-w-4xl mx-auto">
+        <app-timeline-item 
+          *ngFor="let exp of experience" 
+          [company]="exp.company"
+          [role]="exp.role"
+          [duration]="exp.duration"
+          [description]="exp.description"
+          [logo]="exp.logo"
+          (viewDetails)="onViewDetails($event)"
+        ></app-timeline-item>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Overlay -->
+  <div 
+    *ngIf="isModalOpen()" 
+    class="fixed inset-0 z-50 flex items-center justify-center"
+    aria-modal="true" role="dialog"
+  >
+    <div class="absolute inset-0 bg-black/50" (click)="closeModal()"></div>
+
+    <div class="relative bg-white dark:bg-gray-900 w-11/12 md:w-2/3 lg:w-1/2 rounded-xl shadow-2xl border border-gray-200 dark:border-gray-700 overflow-hidden">
+      <!-- Header -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-gray-200 dark:border-gray-700">
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">{{ selectedItem()?.role }} @ {{ selectedItem()?.company }}</h3>
+        <button class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800" (click)="closeModal()" aria-label="Close dialog">
+          <svg class="w-5 h-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <!-- Body -->
+      <div class="p-6 space-y-4">
+        <div class="flex items-center justify-between text-sm text-gray-500 dark:text-gray-400">
+          <span class="inline-flex items-center gap-2"><svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3M3 11h18M5 19h14a2 2 0 002-2v-6H3v6a2 2 0 002 2z"/></svg>{{ selectedItem()?.duration }}</span>
+        </div>
+
+        <p class="text-gray-700 dark:text-gray-300 leading-relaxed">{{ selectedItem()?.description }}</p>
+
+        <div class="flex items-center gap-3 pt-2">
+          <div class="w-10 h-10 bg-gray-200 dark:bg-gray-800 rounded-lg flex items-center justify-center">
+            <svg class="w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M4 4a2 2 0 012-2h8a2 2 0 012 2v12a1 1 0 110 2h-3a1 1 0 01-1-1v-2a1 1 0 00-1-1H9a1 1 0 00-1 1v2a1 1 0 01-1 1H4a1 1 0 110-2V4zm3 1h2v2H7V5zm2 4H7v2h2V9zm2-4h2v2h-2V5zm2 4h-2v2h2V9z" clip-rule="evenodd"></path></svg>
+          </div>
+          <div>
+            <div class="text-gray-900 dark:text-white font-medium">{{ selectedItem()?.company }}</div>
+            <div class="text-gray-500 dark:text-gray-400 text-sm">{{ selectedItem()?.role }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
