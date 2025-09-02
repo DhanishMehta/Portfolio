@@ -39,5 +39,14 @@
   { "name": "Leadership", "icon": "leader", "level": "Soft Skill", "proficiency": 80 },
   { "name": "Team Player", "icon": "team", "level": "Soft Skill", "proficiency": 85 },
   { "name": "Curious", "icon": "curious", "level": "Soft Skill", "proficiency": 80 },
-  { "name": "Problem Solver", "icon": "problem", "level": "Soft Skill", "proficiency": 85 }
+  { "name": "Problem Solver", "icon": "problem", "level": "Soft Skill", "proficiency": 85 },
+  { "name": "Cloud Solutions", "icon": "aws", "level": "Advanced", "proficiency": 80 },
+  { "name": "SEO Optimization", "icon": "generic", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Excel VBA", "icon": "generic", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Automation", "icon": "python", "level": "Intermediate", "proficiency": 75 },
+  { "name": "Portfolio Websites", "icon": "react", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Graphic Designing", "icon": "generic", "level": "Advanced", "proficiency": 85 },
+  { "name": "Illustrator", "icon": "illustrator", "level": "Intermediate", "proficiency": 70 },
+  { "name": "Photoshop", "icon": "photoshop", "level": "Intermediate", "proficiency": 70 },
+  { "name": "ChatGPT/AI Tools", "icon": "chatgpt", "level": "Intermediate", "proficiency": 75 }
 ]

@@ -13,8 +13,50 @@ export class Hero {
   private downloadService = inject(DownloadService);
   
   name = 'Dhanish Mehta';
-  title = 'Full-Stack Engineer';
-  tagline = 'Building scalable, performance-driven web apps with Angular, Java, and TypeScript.';
+  roles = [
+    'Full Stack Engineer',
+    'Frontend Engineer',
+    'Certified Angular Developer',
+    'Solutions Expert',
+    'Graphic Designer',
+    'Integration Engineer',
+    'Architect',
+    'Prompt Engineer'
+  ];
+  currentRole = '';
+  private roleIndex = 0;
+  private charIndex = 0;
+  private typingForward = true;
+  private pauseTimeout: any;
+
+  constructor() {
+    this.startTypewriter();
+  }
+
+  private startTypewriter() {
+    setTimeout(() => this.typewriterStep(), 500);
+  }
+
+  private typewriterStep() {
+    const role = this.roles[this.roleIndex];
+    if (this.typingForward) {
+      this.charIndex++;
+      this.currentRole = role.substring(0, this.charIndex);
+      if (this.charIndex === role.length) {
+        this.typingForward = false;
+        this.pauseTimeout = setTimeout(() => this.typewriterStep(), 1200); // Delay before erasing
+        return;
+      }
+    } else {
+      this.charIndex--;
+      this.currentRole = role.substring(0, this.charIndex);
+      if (this.charIndex === 0) {
+        this.typingForward = true;
+        this.roleIndex = (this.roleIndex + 1) % this.roles.length;
+      }
+    }
+    setTimeout(() => this.typewriterStep(), 100);
+  }
   
   downloadResume(): void {
     try {

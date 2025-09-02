@@ -9,7 +9,7 @@ export class DownloadService {
     // Create a link element
     const link = document.createElement('a');
     link.href = 'assets/data/resume.pdf';
-    link.download = 'YourName_Resume.pdf';
+    link.download = 'Dhanish Mehta.pdf';
     link.target = '_blank';
     
     // Append to body, click, and remove

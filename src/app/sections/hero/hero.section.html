@@ -6,12 +6,9 @@
         <h1 class="text-4xl md:text-6xl font-bold text-gray-900 dark:text-white mb-6">
           Hi, I'm <span class="text-blue-600 dark:text-blue-400">{{ name }}</span>
         </h1>
-        <h2 class="text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300 mb-4">
-          {{ title }}
+        <h2 class="text-2xl md:text-3xl font-semibold mb-4 min-h-[2.5rem]">
+          <span class="bg-gradient-to-r from-blue-600 via-purple-500 to-pink-500 bg-clip-text text-transparent">{{ currentRole }}</span><span class="border-r-2 border-blue-600 animate-pulse ml-1"></span>
         </h2>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
-          {{ tagline }}
-        </p>
         
         <!-- CTA Buttons -->
         <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">

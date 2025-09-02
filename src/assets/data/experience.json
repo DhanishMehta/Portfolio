@@ -4,5 +4,17 @@
     "role": "Software Engineer",
     "duration": "Sept 2023 – Present",
     "description": "Accelerated insurance product onboarding by 75% via full-stack solutions (Angular, Java, Quarkus, Kubernetes). Built reusable frontend components, raised code coverage to 80%, optimized performance with caching & NgRx (30% faster loads), mentored 10+ juniors, led reviews, contributed to micro-frontend and backend APIs, and built an automated L&D hiring solution reducing manual effort by 98%."
+  },
+  {
+    "company": "KCPL (Kalayatan Consumers Pvt Ltd)",
+    "role": "Solutions Developer",
+    "duration": "2022 – 2023",
+    "description": "Provided end-to-end solutions including building portfolio websites, optimizing SEO, and architecting scalable, reliable cloud-based systems for data storage and maintainability. Improved efficiency and eliminated single points of failure. Automated sales, warehousing, purchase, and stock processes with Python and Excel VBA scripts, streamlining business operations."
+  },
+  {
+    "company": "National Service Scheme (KIIT University)",
+    "role": "Student Coordinator, Project Representative, Graphic Design Lead",
+    "duration": "2021 – 2024",
+    "description": "Joined as a volunteer, promoted to Project Representative (managed a project of ~40 people), then Student Coordinator (coordinated 600+ volunteers). As Graphic Design Lead, led a team of 15 to create graphics for the organization. Organized and participated in drives: cleanliness, blood donation, slum visits, orphanage and old age home visits, and more. This experience transformed my soft skills, leadership, and ability to give back to the community."
   }
 ]

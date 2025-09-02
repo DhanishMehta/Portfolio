@@ -25,5 +25,25 @@
     "tech": ["TensorFlow", "Python", "FastAPI", "Web Scraping"],
     "github": "",
     "demo": ""
+  },
+  {
+    "title": "OptiCric",
+    "shortDescription": "End-to-end cricket data analytics using Python, Pandas, and PowerBI.",
+    "longDescription": "OptiCric is a comprehensive data analytics project focused on cricket statistics. Leveraging Python and Pandas for data wrangling and preprocessing, the project analyzes large-scale cricket datasets to extract actionable insights on player performance, match outcomes, and trends. The results are visualized in interactive dashboards using PowerBI, enabling dynamic exploration of metrics such as player averages, strike rates, win probabilities, and more. The project demonstrates the full data pipeline from raw data ingestion to business intelligence, making it a valuable tool for analysts, coaches, and enthusiasts.",
+    "image": "assets/images/opticric.png",
+    "tech": ["Python", "Pandas", "PowerBI"],
+    "github": "",
+    "demo": "",
+    "year": 2023
+  },
+  {
+    "title": "KCPL Portfolio Website",
+    "shortDescription": "A modern, responsive portfolio website for KCPL built with ReactJS and TailwindCSS.",
+    "longDescription": "Developed a professional front-end portfolio website for Kalayatan Consumers Pvt Ltd (KCPL) to showcase their business, services, and achievements. The site is built using ReactJS for a dynamic, component-driven architecture and TailwindCSS for rapid, responsive styling. Key features include a visually engaging landing page, service and product highlights, team and leadership profiles, and a contact form. The project emphasizes SEO optimization, accessibility, and performance, ensuring a seamless experience across devices and browsers.",
+    "image": "assets/images/kcpl-portfolio.png",
+    "tech": ["ReactJS", "TailwindCSS"],
+    "github": "",
+    "demo": "",
+    "year": 2023
   }
 ]

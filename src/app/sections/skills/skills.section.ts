@@ -15,6 +15,8 @@ export class Skills implements OnInit {
 	private dataService = inject(DataService);
 	skills: any[] = [];
 	viewMode = signal<'grid' | 'cloud'>('grid');
+	expanded = false;
+	readonly SKILL_LIMIT = 12;
 
 	ngOnInit(): void {
 		this.loadSkills();
@@ -47,6 +49,14 @@ export class Skills implements OnInit {
 				];
 			}
 		});
+	}
+
+	get visibleSkills() {
+		return this.expanded ? this.skills : this.skills.slice(0, this.SKILL_LIMIT);
+	}
+
+	toggleExpand() {
+		this.expanded = !this.expanded;
 	}
 
 	// Color theming for skills (approximate brand colors using Tailwind classes)
