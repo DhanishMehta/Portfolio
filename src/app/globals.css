@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-playfair: 'Playfair Display';
+  --font-inter: 'Inter';
+  --font-jetbrains: 'JetBrains Mono';
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-bg-base text-text-primary font-sans;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { @apply bg-bg-base; }
+::-webkit-scrollbar-thumb { @apply bg-bg-border rounded-full; }
+::-webkit-scrollbar-thumb:hover { @apply bg-bg-border-hover; }
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
