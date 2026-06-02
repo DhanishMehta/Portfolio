@@ -1,0 +1,63 @@
+export const config = {
+  name: 'Dhanish Mehta',
+  tagline: 'Building systems that work fast, feel human, and actually ship.',
+  roles: ['AI-First Engineer', 'Full-Stack Developer', 'Community Builder', 'Automation Architect'],
+  location: 'Hyderabad, India',
+  email: 'dhanish.workspace@gmail.com',
+  socials: {
+    linkedin: 'https://www.linkedin.com/in/dhanish-mehta/',
+    github: 'https://github.com/dhanishmehta',
+  },
+  stats: [
+    { value: 75, suffix: '%', label: 'Faster Onboarding' },
+    { value: 98, suffix: '%', label: 'Effort Eliminated' },
+    { value: 600, suffix: '+', label: 'People Led' },
+  ],
+  bentoTiles: [
+    {
+      id: 'builder',
+      label: 'The Builder',
+      sentence: 'I cut interview scheduling manual effort by 98% — 600+ interviews, zero spreadsheet chaos.',
+      size: 'large' as const,
+      icon: '⚙',
+      stat: '98% effort eliminated',
+    },
+    {
+      id: 'ai-thinker',
+      label: 'The AI Thinker',
+      sentence: "I live on Chubb's Core AI team. I don't just use AI tools — I build the infrastructure they run on.",
+      size: 'medium' as const,
+      icon: '◈',
+    },
+    {
+      id: 'mentor',
+      label: 'The Mentor',
+      sentence: "I've mentored 10+ engineers. Good code is nothing without someone to pass it forward to.",
+      size: 'small' as const,
+      icon: '↗',
+      stat: '10+ engineers',
+    },
+    {
+      id: 'leader',
+      label: 'The Leader',
+      sentence: "Student Coordinator for 600+ NSS volunteers. Leadership isn't a title — it's showing up.",
+      size: 'medium' as const,
+      icon: '◉',
+    },
+    {
+      id: 'designer',
+      label: 'The Designer',
+      sentence: 'Graphic Design Lead. I think in systems AND aesthetics. Frontend is not just logic.',
+      size: 'small' as const,
+      icon: '✦',
+    },
+    {
+      id: 'craftsman',
+      label: 'The Craftsman',
+      sentence: "75% faster insurance product onboarding. I'm here for the boring problems nobody else wants to solve.",
+      size: 'large' as const,
+      icon: '◆',
+      stat: '75% faster',
+    },
+  ],
+} as const;
