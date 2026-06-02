@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { Project } from '@/data/projects.data';
 import { cn } from '@/lib/utils';
+import { useTilt } from '@/hooks/useTilt';
 
 interface ProjectCardProps {
   project: Project;
@@ -11,18 +12,36 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ project, isActive, onClick }: ProjectCardProps) {
+  const { ref: tiltRef, state: tilt, tiltStyle, onMouseMove, onMouseLeave } = useTilt(8);
+
   return (
+    <div
+      ref={tiltRef}
+      style={tiltStyle}
+      onMouseMove={onMouseMove}
+      onMouseLeave={onMouseLeave}
+      className="relative"
+    >
     <motion.div
       layoutId={project.slug}
       onClick={onClick}
       layout
       className={cn(
         'bg-bg-surface border border-bg-border rounded-xl overflow-hidden cursor-pointer relative flex flex-col p-4',
-        'transition-all duration-[400ms]',
-        'hover:border-bg-border-hover hover:shadow-[0_0_30px_rgba(245,164,32,0.1)]',
-        isActive ? 'h-96' : 'h-80',
+        'transition-colors duration-[400ms]',
+        'hover:border-bg-border-hover hover:shadow-[0_0_30px_rgba(245,164,32,0.12)]',
+        isActive ? 'h-96' : 'h-64 md:h-80',
       )}
     >
+      {/* Glare overlay */}
+      {tilt.isHovered && (
+        <div
+          className="absolute inset-0 rounded-xl pointer-events-none z-10 opacity-[0.06]"
+          style={{
+            background: `radial-gradient(circle at ${tilt.glareX}% ${tilt.glareY}%, white, transparent 60%)`,
+          }}
+        />
+      )}
       {/* Top: Project number */}
       <div className="text-accent font-mono text-sm tracking-widest mb-3">
         {project.number}
@@ -112,5 +131,6 @@ export default function ProjectCard({ project, isActive, onClick }: ProjectCardP
         )}
       </AnimatePresence>
     </motion.div>
+    </div>
   );
 }

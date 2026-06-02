@@ -1,30 +1,10 @@
 'use client';
-import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { config } from '@/data/portfolio.config';
 import { useScrollAnimation, fadeUpVariants, staggerContainerVariants } from '@/hooks/useScrollAnimation';
 
 export default function ContactSection() {
-  const [copied, setCopied] = useState(false);
   const { ref, controls } = useScrollAnimation();
-
-  const handleCopyEmail = async () => {
-    try {
-      await navigator.clipboard.writeText(config.email);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {
-      // Fallback for environments without clipboard API
-      const el = document.createElement('textarea');
-      el.value = config.email;
-      document.body.appendChild(el);
-      el.select();
-      document.execCommand('copy');
-      document.body.removeChild(el);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    }
-  };
 
   return (
     <section id="contact" className="py-24 md:py-32 bg-bg-base">
@@ -58,25 +38,15 @@ export default function ContactSection() {
 
         <motion.div
           variants={fadeUpVariants}
-          className="flex flex-col sm:flex-row gap-6 justify-center mt-12"
+          className="flex flex-col sm:flex-row gap-4 justify-center mt-12"
         >
-          {/* Email copy button */}
-          <div className="relative inline-flex">
-            <button
-              onClick={handleCopyEmail}
-              className="relative font-mono text-sm tracking-widest uppercase border border-accent text-accent hover:bg-accent hover:text-bg-base px-8 py-4 transition-all duration-300"
-              aria-label={`Copy email address ${config.email}`}
-            >
-              {copied ? 'Copied!' : config.email}
-            </button>
-            {copied && (
-              <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs font-mono text-accent bg-bg-surface border border-accent/30 px-2 py-1 rounded whitespace-nowrap pointer-events-none">
-                Copied!
-              </span>
-            )}
-          </div>
+          <a
+            href={`mailto:${config.email}`}
+            className="font-mono text-sm tracking-widest uppercase border border-accent text-accent hover:bg-accent hover:text-bg-base px-8 py-4 transition-all duration-300"
+          >
+            {config.email}
+          </a>
 
-          {/* LinkedIn */}
           <a
             href={config.socials.linkedin}
             target="_blank"
@@ -86,7 +56,6 @@ export default function ContactSection() {
             LinkedIn ↗
           </a>
 
-          {/* GitHub */}
           <a
             href={config.socials.github}
             target="_blank"
