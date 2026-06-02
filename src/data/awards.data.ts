@@ -60,4 +60,21 @@ export const AWARDS: Award[] = [
     issuer: 'Microsoft',
     type: 'certification',
   },
+  {
+    title: 'Claude 101',
+    issuer: 'Anthropic',
+    type: 'certification',
+    highlight: true,
+  },
+  {
+    title: 'Claude Code in Action',
+    issuer: 'Anthropic',
+    type: 'certification',
+    highlight: true,
+  },
+  {
+    title: 'MongoDB Essentials Training',
+    issuer: 'MongoDB',
+    type: 'certification',
+  },
 ];

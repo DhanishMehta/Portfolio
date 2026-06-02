@@ -5,6 +5,7 @@ import { useScrollAnimation, fadeUpVariants, staggerContainerVariants } from '@/
 
 const STACK_LINES = [
   '→ Claude Code (daily driver)',
+  '→ Claude 101 + Claude Code in Action (certified)',
   '→ Gemini API (integrations)',
   '→ Prompt Engineering (PluralSight certified)',
   '→ AI for Software Developers (PluralSight)',

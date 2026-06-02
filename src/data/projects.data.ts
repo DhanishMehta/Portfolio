@@ -30,7 +30,7 @@ export const PROJECTS: Project[] = [
     title: 'RecruitMate',
     number: '02',
     shortDescription: 'Automated scheduling for large-scale hiring drives — 98% less manual effort.',
-    longDescription: 'Role management, bulk upload, filtering, error handling, logging, and scalable scheduling integrated with Webex API. Scheduled 600+ interviews saving substantial man-hours.',
+    longDescription: 'Role management, bulk upload, filtering, error handling, logging, and scalable scheduling integrated with Webex API. Scheduled 750+ interviews, freeing HR teams to focus on strategic tasks and saving substantial man-hours.',
     techStack: ['Angular', 'Webex API', 'PrimeNG', 'ExcelJS'],
     tags: ['Automation', 'HR Tech'],
     icon: '/assets/icons/angular.svg',
