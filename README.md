@@ -1,165 +1,95 @@
-# Personal Portfolio Website
+# Dhanish Mehta — Portfolio
 
-A modern, responsive personal portfolio website built with Angular and Tailwind CSS.
+Personal portfolio for Dhanish Mehta, Software Engineer at Chubb. Built with Next.js 14, Framer Motion, and Tailwind CSS. Features an AI chat widget powered by the Gemini API.
 
-## 🚀 Features
+## Tech Stack
 
-- **Modern Design**: Clean, minimalistic design with dark/light mode toggle
-- **Responsive**: Fully responsive across mobile, tablet, and desktop
-- **JSON-Driven Content**: Easy to update projects, skills, and experience via JSON files
-- **Smooth Navigation**: Anchor-based navigation with smooth scrolling
-- **Standalone Components**: Built with Angular's latest standalone component architecture
-- **TypeScript**: Full TypeScript support with strict mode enabled
+| Concern | Choice |
+|---|---|
+| Framework | Next.js 14 (App Router, TypeScript) |
+| Animations | Framer Motion — 3D tilt, scroll reveals, morphing text |
+| Styling | Tailwind CSS v3 with custom design tokens |
+| AI Chat | Gemini API (`gemini-1.5-flash`) via Next.js API route |
+| Deployment | Netlify (`@netlify/plugin-nextjs`) |
 
-## 🛠️ Tech Stack
+## Getting Started
 
-- **Framework**: Angular (latest version)
-- **Styling**: Tailwind CSS
-- **Language**: TypeScript
-- **Architecture**: Standalone Components
-- **State Management**: Angular Signals
-- **HTTP Client**: Angular HttpClient
+```bash
+npm install
+npm run dev       # http://localhost:3000
+npm run build     # production build
+```
 
-## 📁 Project Structure
+For the AI chat widget, create `.env.local` in the project root:
+
+```
+GEMINI_API_KEY=your_key_here
+```
+
+## Project Structure
 
 ```
 src/
 ├── app/
-│   ├── components/          # Reusable components
-│   │   ├── navbar/         # Navigation bar
-│   │   ├── footer/         # Footer component
-│   │   ├── project-card/   # Project display card
-│   │   ├── skill-badge/    # Skill display badge
-│   │   ├── timeline-item/  # Experience timeline item
-│   │   └── dark-mode-toggle/ # Theme toggle
-│   ├── sections/           # Main page sections
-│   │   ├── hero/          # Introduction section
-│   │   ├── about/         # About me section
-│   │   ├── skills/        # Skills & technologies
-│   │   ├── projects/      # Featured projects
-│   │   ├── experience/    # Work experience
-│   │   └── contact/       # Contact form
-│   └── services/          # Angular services
-│       ├── data.service.ts # JSON data loading
-│       └── theme.service.ts # Dark/light mode
-├── assets/
-│   └── data/              # JSON data files
-│       ├── projects.json  # Project information
-│       ├── skills.json    # Skills & technologies
-│       ├── experience.json # Work experience
-│       └── socials.json   # Social media links
+│   ├── layout.tsx                  # Root layout, fonts, metadata
+│   ├── page.tsx                    # Main portfolio page
+│   ├── projects/[slug]/page.tsx    # Project detail (SSG)
+│   ├── resume/page.tsx             # Resume viewer
+│   └── api/ask/route.ts            # Gemini streaming API route
+├── components/
+│   ├── layout/                     # Navbar, Footer
+│   ├── sections/                   # HeroSection, BentoSection,
+│   │                               # ProjectsSection, ExperienceSection,
+│   │                               # HumanSection, AiDnaSection, ContactSection
+│   ├── ui/                         # ProjectCard, BentoTile, StatCounter,
+│   │                               # MorphingText, MeshBackground, AwardCard,
+│   │                               # TimelineStop
+│   └── chat/                       # AskDhanish widget, ChatMessage
+├── data/
+│   ├── portfolio.config.ts         # Name, tagline, stats, bento tiles
+│   ├── projects.data.ts            # Project list (add here to add a project)
+│   ├── experience.data.ts          # Work experience
+│   └── awards.data.ts              # Awards and certifications
+├── hooks/
+│   ├── useScrollAnimation.ts       # Scroll-triggered Framer Motion hook
+│   ├── useStatCounter.ts           # Animated number counter
+│   └── useTilt.ts                  # 3D perspective tilt on hover
+└── lib/
+    ├── gemini.ts                   # Gemini client + system prompt
+    └── utils.ts                    # cn() utility
+public/
+├── assets/images/profile.jpg       # Hero portrait
+├── assets/icons/                   # Tech SVG icons
+└── assets/data/resume.pdf          # Resume download
 ```
 
-## 🚀 Getting Started
+## Updating Content
 
-### Prerequisites
+**Add a project** — append one object to `src/data/projects.data.ts`. It appears automatically in the grid, filter, and static routes. No other file to touch.
 
-- Node.js (v18 or higher)
-- npm or yarn
+**Update experience / awards** — edit `src/data/experience.data.ts` or `src/data/awards.data.ts`.
 
-### Installation
+**Change name, tagline, stats, or social links** — edit `src/data/portfolio.config.ts`.
 
-1. Clone the repository:
-```bash
-git clone <your-repo-url>
-cd portfolio
-```
+**Update the AI chat knowledge** — edit the `SYSTEM_PROMPT` in `src/lib/gemini.ts`.
 
-2. Install dependencies:
-```bash
-npm install
-```
+**Add project thumbnails** — drop screenshots into `public/assets/images/` and set `thumbnail: '/assets/images/your-file.png'` in `projects.data.ts`.
 
-3. Start the development server:
-```bash
-ng serve
-```
+## Deployment
 
-4. Open your browser and navigate to `http://localhost:4200`
+Deploys automatically to Netlify on push to `main`. The `netlify.toml` and `@netlify/plugin-nextjs` handle SSR and API routes as Netlify Functions.
 
-## 📝 Customization
+Set `GEMINI_API_KEY` in the Netlify dashboard under Site settings → Environment variables before the first deploy.
 
-### Updating Content
+## Design Tokens
 
-All dynamic content is stored in JSON files under `src/assets/data/`:
+Key Tailwind custom classes (defined in `tailwind.config.ts`):
 
-- **projects.json**: Add your projects with title, description, tech stack, and links
-- **skills.json**: Update your skills and proficiency levels
-- **experience.json**: Add your work experience and achievements
-- **socials.json**: Update your social media links
-
-### Personal Information
-
-Update the following files with your information:
-
-- `src/app/sections/hero/hero.ts`: Your name, title, and tagline
-- `src/app/sections/about/about.ts`: Your personal highlights
-- `src/app/components/footer/footer.html`: Your name in copyright
-
-### Styling
-
-The project uses Tailwind CSS for styling. You can customize:
-
-- Colors and themes in `tailwind.config.js`
-- Global styles in `src/styles.css`
-- Component-specific styles in individual `.css` files
-
-## 🎨 Design Features
-
-- **Dark/Light Mode**: Toggle between themes with localStorage persistence
-- **Responsive Grid**: Adaptive layouts for different screen sizes
-- **Smooth Animations**: Hover effects and transitions
-- **Modern UI**: Clean typography and spacing
-- **Accessibility**: ARIA labels and semantic HTML
-
-## 📱 Responsive Design
-
-The portfolio is fully responsive with breakpoints for:
-- Mobile: < 768px
-- Tablet: 768px - 1024px
-- Desktop: > 1024px
-
-## 🚀 Deployment
-
-### Netlify
-
-1. Build the project:
-```bash
-ng build
-```
-
-2. Deploy the `dist/` folder to Netlify
-
-### GitHub Pages
-
-1. Install gh-pages:
-```bash
-npm install -g gh-pages
-```
-
-2. Build and deploy:
-```bash
-ng build --base-href "https://yourusername.github.io/portfolio/"
-gh-pages -d dist
-```
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Submit a pull request
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
-## 🙏 Acknowledgments
-
-- Built with [Angular](https://angular.io/)
-- Styled with [Tailwind CSS](https://tailwindcss.com/)
-- Icons from [Heroicons](https://heroicons.com/)
-
----
-
-**Happy coding! 🎉**
+| Class | Value | Use |
+|---|---|---|
+| `bg-bg-base` | `#060D1F` | Page background |
+| `bg-bg-surface` | `#0C1528` | Card backgrounds |
+| `text-accent` | `#F5A420` | Amber — labels, CTAs, numbers |
+| `bg-warm-base` | `#1A1008` | Human section only |
+| `font-serif` | Playfair Display | Headings |
+| `font-mono` | JetBrains Mono | Labels, code, stats |
