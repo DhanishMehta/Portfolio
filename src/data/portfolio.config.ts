@@ -5,7 +5,7 @@ export const config = {
   location: 'Hyderabad, India',
   email: 'dhanish.workspace@gmail.com',
   socials: {
-    linkedin: 'https://www.linkedin.com/in/dhanish-mehta/',
+    linkedin: 'https://www.linkedin.com/in/dhanish-mehta-b850191b5/',
     github: 'https://github.com/dhanishmehta',
   },
   stats: [
