@@ -7,7 +7,7 @@ import MorphingText from '@/components/ui/MorphingText';
 import StatCounter from '@/components/ui/StatCounter';
 import { useTilt } from '@/hooks/useTilt';
 
-const nameLetters = 'Dhanish Mehta'.split('');
+const nameWords = 'Dhanish Mehta'.split(' ').map((word) => word.split(''));
 
 export default function HeroSection() {
   const [scrolled, setScrolled] = useState(false);
@@ -40,22 +40,25 @@ export default function HeroSection() {
             </motion.p>
 
             {/* Name stagger */}
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-text-primary mb-4 flex flex-wrap justify-center lg:justify-start">
-              {nameLetters.map((letter, i) =>
-                letter === ' ' ? (
-                  <span key={i} className="inline-block w-3 md:w-4" aria-hidden="true" />
-                ) : (
-                  <motion.span
-                    key={i}
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: i * 0.04, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-                    className="inline-block"
-                  >
-                    {letter}
-                  </motion.span>
-                ),
-              )}
+            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-serif font-bold text-text-primary mb-4 flex flex-wrap gap-x-3 md:gap-x-4 justify-center lg:justify-start">
+              {nameWords.map((wordLetters, wi) => {
+                const letterOffset = nameWords.slice(0, wi).reduce((acc, w) => acc + w.length, 0) + wi;
+                return (
+                  <span key={wi} className="inline-flex whitespace-nowrap">
+                    {wordLetters.map((letter, li) => (
+                      <motion.span
+                        key={li}
+                        initial={{ opacity: 0, y: 30 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: (letterOffset + li) * 0.04, duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+                        className="inline-block"
+                      >
+                        {letter}
+                      </motion.span>
+                    ))}
+                  </span>
+                );
+              })}
             </h1>
 
             <motion.div
