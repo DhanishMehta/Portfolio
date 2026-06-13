@@ -33,14 +33,22 @@ export default function Navbar() {
           ))}
         </div>
 
-        {/* Right: Resume download button */}
-        <a
-          href="/assets/data/resume.pdf"
-          download
-          className="text-xs font-mono tracking-widest uppercase border border-accent text-accent px-4 py-2 hover:bg-accent hover:text-bg-base transition-all"
-        >
-          Resume
-        </a>
+        {/* Right: 3D mode + Resume download */}
+        <div className="flex items-center gap-3">
+          <a
+            href="/3d"
+            className="text-xs font-mono tracking-widest uppercase border border-white/20 text-text-secondary px-4 py-2 hover:border-accent hover:text-accent transition-all"
+          >
+            3D
+          </a>
+          <a
+            href="/assets/data/resume.pdf"
+            download
+            className="text-xs font-mono tracking-widest uppercase border border-accent text-accent px-4 py-2 hover:bg-accent hover:text-bg-base transition-all"
+          >
+            Resume
+          </a>
+        </div>
       </div>
     </nav>
   );

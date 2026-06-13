@@ -1,3 +1,7 @@
+# Blender working sources (38MB of .blend + source GLBs) — not needed to run/deploy.
+# The exported runtime asset lives in public/assets/3d/. Back these up separately or use Git LFS.
+/Blender sources/
+
 # Next.js
 /.next/
 /out/
