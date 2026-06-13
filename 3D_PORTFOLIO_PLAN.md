@@ -701,7 +701,21 @@ Took the scene from Blender into a live, working R3F app. Verified in a real bro
 - **Code written:** `src/app/3d/page.tsx` (dynamic `ssr:false` + mobile fallback — note the UA-first check, `window.innerWidth` can report 0 headless), `components/3d/Experience3D.tsx` (Canvas, Environment, Stars, fog, Bloom+SMAA, OrbitControls), `World3D.tsx` (GLB load + anim + hover/click→zone via parent-climb), `NavigationBanner3D.tsx`, `RubiksCube.tsx` (procedural 27-cubie, idle-spin stub), `constants3d.ts`, `hooks/useCamera3D.ts` (GSAP fly). Added a "3D" link to `Navbar.tsx`.
 - **Bookcase note:** confirmed it's correctly placed but occluded behind the desk/monitors from the HUB angle. Left as-is — R3F frames it separately for the Experience zone. Flipping it 180° made no visible difference (reverted).
 
-**Open polish (next):** R3F tone mapping (ACESFilmic) + HDRI make the room brighter/flatter than the Blender AgX look — tune lights/exposure (Phase 4/7). Procedural Rubik's cube placement `[1.3,0.95,6.6]` sits a touch high near the monitors — nudge onto the desk surface. Zone camera offsets are first-pass — refine with leva. Then Phase 4 zone content (`<Html>` panels), effects (coffee steam, particles), and the arcade games.
+### Changelog (2026-06-13, session 2b) — Zone content, arcade, effects (Phases 4–6 first pass)
+
+Browser-verified end-to-end. The `/3d` experience is now content-complete and navigable.
+
+- **Zone content** (`ZoneContent.tsx`): right-docked HUD panels (framer-motion slide-in) wired to the **real** data files — `projects.data`, `experience.data`, `awards.data`, `portfolio.config`. Projects/Experience/AI-DNA/Awards/Chill-contact all render live content. Chose a docked HUD panel over on-monitor `<Html>` for legibility (on-object `<Html>` is a later visual upgrade).
+- **Arcade** (`games/GameLauncher.tsx` + `games/DeployDash.tsx`): playable **Deploy Dash** endless runner — pure `<canvas>` + rAF, SPACE/tap to jump, localStorage high score. Verified running in browser. Other 5 games stubbed "soon".
+- **Effects:** `effects/AmbientParticles.tsx` (amber additive motes drifting up) + `effects/CoffeeSteam.tsx` (additive wisp over `deco_mug`).
+- **HUD:** `HudExtras.tsx` — live **IST clock** + collapsible **model credits** panel (satisfies CC-BY attribution requirement).
+- **Tone:** switched to **AgX tone mapping** (exposure 0.85) + `environmentIntensity={0.35}` so the room reads warm like the Blender AgX render instead of the washed ACES default.
+
+**Open polish (next — needs design taste, good review boundary):**
+- Zone camera offsets are first-pass — the camera doesn't always frame the target object tightly (e.g. arcade still looks hub-ish). Tune with leva and re-bake into `constants3d.ts`.
+- `window_space_glow` blows out white (bloom picks up the emissive plane) — same issue flagged in the Blender changelog; dial down emissive or bloom threshold.
+- Rubik's cube at `[1.3,0.95,6.6]` sits a touch high near the monitors — nudge onto the desk; then add the drag-to-rotate / scramble mechanic (Phase 5).
+- Remaining: easter-egg interactions (cards/mug/headphones/books), games 2–6, on-monitor `<Html>`, astronaut drift, mobile polish, Netlify deploy.
 
 ### Pending items (pick up here)
 
