@@ -11,8 +11,13 @@ import {
   AdaptiveDpr,
 } from '@react-three/drei';
 import { EffectComposer, Bloom, SMAA } from '@react-three/postprocessing';
+import * as THREE from 'three';
 import { World3D } from './World3D';
 import { NavigationBanner3D } from './NavigationBanner3D';
+import { ZoneContent } from './ZoneContent';
+import { HudExtras } from './HudExtras';
+import { AmbientParticles } from './effects/AmbientParticles';
+import { CoffeeSteam } from './effects/CoffeeSteam';
 import { useCamera3D } from '@/hooks/useCamera3D';
 import {
   CAMERA_POSITIONS,
@@ -34,7 +39,12 @@ export default function Experience3D() {
     <div className="relative h-screen w-screen overflow-hidden bg-[#060D1F]">
       <Canvas
         dpr={[1, 2]}
-        gl={{ antialias: false, powerPreference: 'high-performance' }}
+        gl={{
+          antialias: false,
+          powerPreference: 'high-performance',
+          toneMapping: THREE.AgXToneMapping,
+          toneMappingExposure: 0.85,
+        }}
         shadows
       >
         <color attach="background" args={['#060D1F']} />
@@ -64,9 +74,12 @@ export default function Experience3D() {
 
         <Suspense fallback={null}>
           <World3D onSelectZone={navigate} />
-          <Environment files={HDRI_URL} />
+          {/* environmentIntensity tames the bright HDRI so warm point lights read */}
+          <Environment files={HDRI_URL} environmentIntensity={0.35} />
+          <CoffeeSteam />
         </Suspense>
 
+        <AmbientParticles />
         <Stars radius={80} depth={50} count={2500} factor={4} saturation={0} fade speed={0.5} />
 
         <EffectComposer multisampling={0}>
@@ -78,6 +91,8 @@ export default function Experience3D() {
       </Canvas>
 
       <NavigationBanner3D active={activeZone} onNavigate={navigate} />
+      <ZoneContent zone={activeZone} />
+      <HudExtras />
       <Loader />
     </div>
   );
