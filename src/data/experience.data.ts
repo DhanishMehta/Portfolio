@@ -16,19 +16,30 @@ export interface ExperienceItem {
 export const EXPERIENCE: ExperienceItem[] = [
   {
     company: 'Chubb',
-    role: 'Software Engineer, Core AI Team',
-    duration: 'Sept 2023 – Present',
+    role: 'Senior Software Engineer',
+    duration: 'June 2026 – Present',
     isCurrent: true,
     stats: [
-      { value: '75%', label: 'Faster product onboarding' },
-      { value: '85%+', label: 'Code coverage achieved' },
-      { value: '30%', label: 'Faster load times' },
-      { value: '10+', label: 'Engineers mentored' },
-      { value: '98%', label: 'Manual hiring effort eliminated' },
+      { value: '8h→5m', label: 'Variance analysis cut' },
+      { value: '<300ms', label: 'p95 response (Redis)' },
+      { value: '<60ms', label: 'RBAC entitlements' },
     ],
     description:
-      'Drive AI-assisted development with Claude Code and LLMs for faster delivery and reviews. Accelerated product onboarding 75% via Angular, Java, Quarkus, and Kubernetes. Raised code coverage from 0% to 85%+, optimized performance with NgRx caching (30% faster loads), mentored 10+ developers, and built RecruitMate — automated scheduling for 750+ interviews, eliminating 98% of manual effort.',
+      'Leading delivery of an enterprise financial forecasting platform (Angular 20 + Nx + NestJS + Snowflake) with AI-powered anomaly detection and LLM-generated narratives — cutting variance analysis from 8 hours to under 5 minutes, backed by a 4-layer Redis cache (<300ms p95). Architected row-level RBAC (Azure AD OIDC + TVP-parameterized SQL) with zero injection surface. Built a semantic codebase-intelligence CLI (TypeScript + MCP) that surfaces typed knowledge graphs to AI coding assistants, plus an internal developer-tooling suite — AI code-attribution tracker, FMEA observability gap detector, and an Atlassian workflow plugin with parallel MCP skills.',
     awards: ['Q3 Platinum Excellence Award 2024', 'Q1 Amazing Contributions Award 2025'],
+  },
+  {
+    company: 'Chubb',
+    role: 'Software Engineer',
+    duration: 'Sept 2023 – May 2026',
+    stats: [
+      { value: '75%', label: 'Faster onboarding' },
+      { value: '85%+', label: 'Test coverage' },
+      { value: '30%', label: 'Faster load times' },
+      { value: '10+', label: 'Engineers mentored' },
+    ],
+    description:
+      "Accelerated product onboarding 75% via scalable full-stack solutions (Angular, Java, Quarkus, Kubernetes) and a reusable UI component library on Chubb's design system. Raised test coverage from 0% to 85%+ (Jest, Playwright, JUnit), cut load times 30% with an NgRx store + caching, and contributed to micro-frontend architecture and backend APIs. Led and mentored 10+ developers and interns, drove code reviews, and built RecruitMate — automated interview scheduling that eliminated 98% of manual effort across 750+ interviews.",
   },
   {
     company: 'KCPL',

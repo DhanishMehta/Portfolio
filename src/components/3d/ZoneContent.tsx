@@ -6,6 +6,7 @@ import { PROJECTS } from '@/data/projects.data';
 import { EXPERIENCE } from '@/data/experience.data';
 import { AWARDS } from '@/data/awards.data';
 import { ZONE_LABELS, type ZoneKey } from './constants3d';
+import { GameLauncher } from './games/GameLauncher';
 
 interface Props {
   zone: ZoneKey;
@@ -231,10 +232,9 @@ function ArcadePanel() {
     <div className="space-y-3">
       <h2 className="text-xl font-semibold text-text-primary">Arcade</h2>
       <p className="text-sm text-text-secondary">
-        Six mini-games themed on my actual work — the first is live. Play it right on the
-        cabinet screen. ← Use the cabinet.
+        Six mini-games themed on my actual work — the first is live. Play it here:
       </p>
-      <p className="font-mono text-[11px] text-accent">SPACE / tap to jump · Deploy Dash</p>
+      <GameLauncher />
     </div>
   );
 }

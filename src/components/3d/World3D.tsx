@@ -1,12 +1,11 @@
 'use client';
 
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useGLTF, useAnimations, Html } from '@react-three/drei';
-import type { Object3D } from 'three';
+import { Vector3, type Object3D } from 'three';
 import { useFrame, type ThreeEvent } from '@react-three/fiber';
-import { MODEL_URL, DRACO_PATH, OBJECT_TO_ZONE, type ZoneKey } from './constants3d';
+import { MODEL_URL, DRACO_PATH, OBJECT_TO_ZONE, ZONE_LABELS, type ZoneKey } from './constants3d';
 import { RubiksCube } from './RubiksCube';
-import { GameLauncher } from './games/GameLauncher';
 
 useGLTF.preload(MODEL_URL, DRACO_PATH);
 
@@ -47,15 +46,26 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
     astronaut.rotation.z = Math.sin(t * 0.4) * 0.08;
   });
 
+  // Hover tooltip so each interactive object clearly announces its zone.
+  const [hover, setHover] = useState<{ zone: ZoneKey; point: Vector3 } | null>(null);
+
   const handleOver = (e: ThreeEvent<PointerEvent>) => {
-    if (resolveZone(e.object)) {
+    const zone = resolveZone(e.object);
+    if (zone) {
       e.stopPropagation();
       document.body.style.cursor = 'pointer';
+      setHover({ zone, point: e.point.clone() });
     }
+  };
+
+  const handleMove = (e: ThreeEvent<PointerEvent>) => {
+    const zone = resolveZone(e.object);
+    if (zone) setHover({ zone, point: e.point.clone() });
   };
 
   const handleOut = () => {
     document.body.style.cursor = 'auto';
+    setHover(null);
   };
 
   const handleClick = (e: ThreeEvent<MouseEvent>) => {
@@ -71,28 +81,25 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
       <primitive
         object={scene}
         onPointerOver={handleOver}
+        onPointerMove={handleMove}
         onPointerOut={handleOut}
         onClick={handleClick}
       />
 
-      {/* Rubik's cube — procedural, seated on the desk surface (desk top ≈ y1.0). */}
-      <RubiksCube position={[1.15, 1.18, 6.95]} scale={0.16} />
+      {/* Rubik's cube — procedural, resting on the ottoman / coffee table in the chill corner. */}
+      <RubiksCube position={[4.55, 0.5, 4.45]} scale={0.085} />
 
-      {/* The arcade game lives ON the cabinet screen. GameScreen_Plane center is at
-          three (6.26, 1.39, 7.0); its face normal points -x, so rotate to face -x.
-          Only mounted in the arcade zone to keep the game canvas idle otherwise. */}
-      {activeZone === 'arcade' && (
+      {/* Hover tooltip — names the zone under the cursor (Projects vs Experience, etc.). */}
+      {hover && activeZone === 'hub' && (
         <Html
-          transform
-          position={[-1.45, 1.39, 7.5]}
-          rotation={[0, Math.PI / 2, 0]}
-          scale={0.0016}
-          occlude={false}
-          zIndexRange={[20, 0]}
-          style={{ width: 360, pointerEvents: 'auto' }}
+          position={[hover.point.x, hover.point.y + 0.35, hover.point.z]}
+          center
+          distanceFactor={9}
+          zIndexRange={[15, 0]}
+          style={{ pointerEvents: 'none' }}
         >
-          <div className="rounded-md bg-[#060D1F] p-2 shadow-[0_0_30px_rgba(245,164,32,0.25)]">
-            <GameLauncher />
+          <div className="whitespace-nowrap rounded-full bg-bg-base/90 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-accent border border-accent/40 backdrop-blur-sm">
+            {ZONE_LABELS[hover.zone]}
           </div>
         </Html>
       )}
