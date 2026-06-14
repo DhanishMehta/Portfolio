@@ -20,7 +20,7 @@ export const CAMERA_POSITIONS: Record<string, CameraState> = {
   experience: { position: [2.32, 2.76, 4.9], target: [-0.54, 1.1, 9.23] },
   skills: { position: [5.94, 2.4, 4.21], target: [3.21, 0.8, 8.4] },
   awards: { position: [4.29, 4.12, 5.04], target: [1.31, 2.4, 9.52] },
-  arcade: { position: [4.0, 1.55, 6.2], target: [6.26, 1.39, 7.0] },
+  arcade: { position: [1.9, 1.7, 7.5], target: [-1.49, 1.39, 7.5] },
   chill: { position: [6.97, 1.98, 1.25], target: [4.36, 0.45, 5.3] },
   // Astronaut floats outside the room (three ≈ [-6, 3, 2]); fly out to meet it.
   about: { position: [-1.2, 3.2, 4.6], target: [-6, 3, 2] },

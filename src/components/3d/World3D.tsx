@@ -84,10 +84,9 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
       {activeZone === 'arcade' && (
         <Html
           transform
-          position={[6.18, 1.39, 7.0]}
-          rotation={[0, -Math.PI / 2, 0]}
+          position={[-1.45, 1.39, 7.5]}
+          rotation={[0, Math.PI / 2, 0]}
           scale={0.0016}
-          distanceFactor={undefined}
           occlude={false}
           zIndexRange={[20, 0]}
           style={{ width: 360, pointerEvents: 'auto' }}
