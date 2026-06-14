@@ -8,9 +8,8 @@ import {
   PerspectiveCamera,
   Stars,
   Loader,
-  AdaptiveDpr,
 } from '@react-three/drei';
-import { EffectComposer, Bloom, SMAA } from '@react-three/postprocessing';
+import { EffectComposer, Bloom } from '@react-three/postprocessing';
 import * as THREE from 'three';
 import { World3D } from './World3D';
 import { NavigationBanner3D } from './NavigationBanner3D';
@@ -38,14 +37,13 @@ export default function Experience3D() {
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#060D1F]">
       <Canvas
-        dpr={[1, 2]}
+        dpr={[1, 1.75]}
         gl={{
           antialias: false,
           powerPreference: 'high-performance',
           toneMapping: THREE.AgXToneMapping,
           toneMappingExposure: 0.85,
         }}
-        shadows
       >
         <color attach="background" args={['#060D1F']} />
         <fog attach="fog" args={['#060D1F', 18, 42]} />
@@ -80,14 +78,12 @@ export default function Experience3D() {
         </Suspense>
 
         <AmbientParticles />
-        <Stars radius={80} depth={50} count={2500} factor={4} saturation={0} fade speed={0.5} />
+        <Stars radius={80} depth={50} count={1500} factor={4} saturation={0} fade speed={0.5} />
 
-        <EffectComposer multisampling={0}>
-          <Bloom luminanceThreshold={0.7} luminanceSmoothing={0.3} intensity={0.6} mipmapBlur />
-          <SMAA />
+        {/* multisampling handles AA in one pass (cheaper than a separate SMAA pass) */}
+        <EffectComposer multisampling={4}>
+          <Bloom luminanceThreshold={0.75} luminanceSmoothing={0.3} intensity={0.5} mipmapBlur />
         </EffectComposer>
-
-        <AdaptiveDpr pixelated />
       </Canvas>
 
       <NavigationBanner3D active={activeZone} onNavigate={navigate} />

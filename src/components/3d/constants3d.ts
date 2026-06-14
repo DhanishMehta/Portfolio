@@ -12,14 +12,16 @@ export interface CameraState {
 
 export const HUB_FOV = 32;
 
+// Targets are biased to the right of each focal object so the object lands on the
+// left ~half of the frame, clear of the right-docked content panel (~35% width).
 export const CAMERA_POSITIONS: Record<string, CameraState> = {
   hub: { position: [9.6, 5.4, -1], target: [2.65, 1.06, 6.34] },
-  projects: { position: [4.5, 2.6, 4.4], target: [0.5, 1.62, 7.05] },
-  experience: { position: [3.6, 2.6, 5.6], target: [-0.9, 1.2, 8.6] },
-  skills: { position: [6.2, 2.6, 5.0], target: [2.8, 1.2, 7.5] },
-  awards: { position: [4.6, 3.4, 5.6], target: [0.95, 2.62, 8.92] },
-  arcade: { position: [6.6, 2.4, 4.6], target: [3.56, 1.3, 7.0] },
-  chill: { position: [7.6, 2.4, 2.2], target: [4.5, 0.7, 4.4] },
+  projects: { position: [3.61, 2.74, 3.66], target: [0.88, 1.14, 7.85] },
+  experience: { position: [2.32, 2.76, 4.9], target: [-0.54, 1.1, 9.23] },
+  skills: { position: [5.94, 2.4, 4.21], target: [3.21, 0.8, 8.4] },
+  awards: { position: [4.29, 4.12, 5.04], target: [1.31, 2.4, 9.52] },
+  arcade: { position: [9.21, 2.42, 3.7], target: [6.73, 0.95, 7.6] },
+  chill: { position: [6.97, 1.98, 1.25], target: [4.36, 0.45, 5.3] },
 };
 
 export type ZoneKey = keyof typeof CAMERA_POSITIONS;

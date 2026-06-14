@@ -43,14 +43,17 @@ export function useCamera3D() {
       duration: CAMERA_TWEEN.duration,
       ease: CAMERA_TWEEN.ease,
       onUpdate: () => {
+        // Drive the camera directly during flight. Do NOT call controls.update()
+        // here — it re-derives position from the orbit sphere and clamps to
+        // minDistance, overriding these (often closer) zone framings.
         cam.position.set(proxy.px, proxy.py, proxy.pz);
-        controls.target.set(proxy.tx, proxy.ty, proxy.tz);
-        controls.update();
+        cam.lookAt(proxy.tx, proxy.ty, proxy.tz);
       },
       onComplete: () => {
-        // re-enable orbit only at the hub overview; zones stay framed
+        // Sync controls to the final framing, then re-enable orbit only at the hub.
+        controls.target.set(dest.target[0], dest.target[1], dest.target[2]);
         controls.enabled = zone === 'hub';
-        controls.update();
+        if (zone === 'hub') controls.update();
         onComplete?.();
       },
     });

@@ -16,9 +16,11 @@ const Experience3D = dynamic(() => import('@/components/3d/Experience3D'), {
 function isMobile() {
   if (typeof navigator === 'undefined') return false;
   const uaMobile = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
-  // Guard against transient/headless width of 0 — only a real, positive narrow width counts.
-  const narrow = window.innerWidth > 0 && window.innerWidth < 768;
-  return uaMobile || narrow;
+  // Width alone is unreliable (headless/transient layouts report 0–1px), so pair a
+  // coarse (touch) pointer with a narrow viewport. A desktop pointer is never "mobile".
+  const coarse = typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches;
+  const narrow = window.matchMedia?.('(max-width: 767px)').matches ?? false;
+  return uaMobile || (coarse && narrow);
 }
 
 export default function ThreeDPage() {

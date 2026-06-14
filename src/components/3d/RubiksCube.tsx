@@ -58,7 +58,7 @@ export function RubiksCube({
   return (
     <group ref={groupRef} position={position} scale={scale} name="deco_rubiks">
       {cubies.map((c) => (
-        <mesh key={c.key} position={c.pos} castShadow>
+        <mesh key={c.key} position={c.pos}>
           <boxGeometry args={[1, 1, 1]} />
           {c.colors.map((color, i) => (
             <meshStandardMaterial key={i} attach={`material-${i}`} color={color} roughness={0.4} />
