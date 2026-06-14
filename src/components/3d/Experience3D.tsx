@@ -74,11 +74,12 @@ export default function Experience3D() {
           maxPolarAngle={Math.PI / 2.05}
         />
 
-        {/* Cozy warm room: soft warm ambient + warm key, gentle desk pool, cool rim. */}
-        <ambientLight intensity={0.55} color="#fff1df" />
-        <directionalLight position={[-6, 9, -4]} intensity={0.7} color="#ffd9a8" />
-        <pointLight position={[2.5, 3.2, 6.5]} intensity={6} color="#ffb866" distance={10} />
-        <directionalLight position={[8, 6, 8]} intensity={0.25} color="#9fb6ff" />
+        {/* Cozy warm room: soft warm ambient + warm key, two warm pools (desk + chill), cool rim. */}
+        <ambientLight intensity={0.7} color="#fff1df" />
+        <directionalLight position={[-5, 9, -3]} intensity={0.75} color="#ffd9a8" />
+        <pointLight position={[1.0, 3.0, 7.0]} intensity={6} color="#ffba6e" distance={9} />
+        <pointLight position={[2.4, 2.4, 5.0]} intensity={4.5} color="#ffc77d" distance={7} />
+        <directionalLight position={[6, 6, 2]} intensity={0.3} color="#9fb6ff" />
 
         <Suspense fallback={null}>
           <World3D activeZone={activeZone} onSelectZone={navigate} />

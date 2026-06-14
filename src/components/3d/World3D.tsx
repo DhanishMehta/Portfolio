@@ -87,7 +87,7 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
       />
 
       {/* Rubik's cube — procedural, resting on the ottoman / coffee table in the chill corner. */}
-      <RubiksCube position={[4.55, 0.5, 4.45]} scale={0.085} />
+      <RubiksCube position={[2.27, 0.55, 4.96]} scale={0.085} />
 
       {/* Hover tooltip — names the zone under the cursor (Projects vs Experience, etc.). */}
       {hover && activeZone === 'hub' && (

@@ -16,14 +16,14 @@ export const HUB_FOV = 32;
 // left ~half of the frame, clear of the right-docked content panel (~35% width).
 export const CAMERA_POSITIONS: Record<string, CameraState> = {
   hub: { position: [9.6, 5.4, -1], target: [2.65, 1.06, 6.34] },
-  projects: { position: [3.61, 2.74, 3.66], target: [0.88, 1.14, 7.85] },
-  experience: { position: [2.32, 2.76, 4.9], target: [-0.54, 1.1, 9.23] },
-  skills: { position: [5.94, 2.4, 4.21], target: [3.21, 0.8, 8.4] },
-  awards: { position: [4.29, 4.12, 5.04], target: [1.31, 2.4, 9.52] },
-  arcade: { position: [1.9, 1.7, 7.5], target: [-1.49, 1.39, 7.5] },
-  chill: { position: [6.97, 1.98, 1.25], target: [4.36, 0.45, 5.3] },
+  projects: { position: [2.86, 2.69, 4.31], target: [0.38, 1.22, 8.21] },
+  experience: { position: [3.32, 2.42, 3.73], target: [0.84, 0.95, 7.63] },
+  skills: { position: [5.09, 2.3, 4.58], target: [2.73, 0.9, 8.34] },
+  awards: { position: [4.04, 4.0, 5.3], target: [1.31, 2.4, 9.49] },
+  arcade: { position: [1.7, 1.6, 5.7], target: [-1.49, 1.39, 5.7] },
+  chill: { position: [5.11, 1.97, 1.66], target: [2.63, 0.5, 5.56] },
   // Astronaut floats outside the room (three ≈ [-6, 3, 2]); fly out to meet it.
-  about: { position: [-1.2, 3.2, 4.6], target: [-6, 3, 2] },
+  about: { position: [-1.5, 4.2, 4.2], target: [-5.97, 4.53, 2.34] },
 };
 
 export type ZoneKey = keyof typeof CAMERA_POSITIONS;
@@ -31,8 +31,11 @@ export type ZoneKey = keyof typeof CAMERA_POSITIONS;
 // Maps an interactive mesh's named ancestor (from the GLB scene graph) to a zone.
 // Climb an Object3D's parents until one of these names is hit.
 export const OBJECT_TO_ZONE: Record<string, ZoneKey> = {
-  monitors_group: 'projects',
-  bookshelf_main: 'experience',
+  // Projects = the monitors; Experience = the desk itself (clear, distinct targets).
+  monitor_new_L: 'projects',
+  monitor_new_2: 'projects',
+  Monitor: 'projects',
+  desk_modern: 'experience',
   robot_skills: 'skills',
   award_shelf: 'awards',
   trophy_01: 'awards',
@@ -43,6 +46,7 @@ export const OBJECT_TO_ZONE: Record<string, ZoneKey> = {
   deco_beanbag: 'chill',
   deco_cards: 'chill',
   deco_headphones_new: 'chill',
+  rug_round_chill: 'chill',
   astronaut_main: 'about',
 };
 
