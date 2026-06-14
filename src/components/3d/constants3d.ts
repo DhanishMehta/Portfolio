@@ -22,6 +22,8 @@ export const CAMERA_POSITIONS: Record<string, CameraState> = {
   awards: { position: [4.29, 4.12, 5.04], target: [1.31, 2.4, 9.52] },
   arcade: { position: [4.0, 1.55, 6.2], target: [6.26, 1.39, 7.0] },
   chill: { position: [6.97, 1.98, 1.25], target: [4.36, 0.45, 5.3] },
+  // Astronaut floats outside the room (three ≈ [-6, 3, 2]); fly out to meet it.
+  about: { position: [-1.2, 3.2, 4.6], target: [-6, 3, 2] },
 };
 
 export type ZoneKey = keyof typeof CAMERA_POSITIONS;
@@ -41,6 +43,7 @@ export const OBJECT_TO_ZONE: Record<string, ZoneKey> = {
   deco_beanbag: 'chill',
   deco_cards: 'chill',
   deco_headphones_new: 'chill',
+  astronaut_main: 'about',
 };
 
 export const ZONE_LABELS: Record<ZoneKey, string> = {
@@ -51,6 +54,7 @@ export const ZONE_LABELS: Record<ZoneKey, string> = {
   awards: 'Awards',
   arcade: 'Arcade',
   chill: 'Chill Corner',
+  about: 'About Me',
 };
 
 export const CAMERA_TWEEN = { duration: 1.1, ease: 'power2.inOut' };

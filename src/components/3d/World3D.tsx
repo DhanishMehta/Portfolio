@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useGLTF, useAnimations, Html } from '@react-three/drei';
 import type { Object3D } from 'three';
-import type { ThreeEvent } from '@react-three/fiber';
+import { useFrame, type ThreeEvent } from '@react-three/fiber';
 import { MODEL_URL, DRACO_PATH, OBJECT_TO_ZONE, type ZoneKey } from './constants3d';
 import { RubiksCube } from './RubiksCube';
 import { GameLauncher } from './games/GameLauncher';
@@ -35,6 +35,17 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
     const first = Object.values(actions)[0];
     first?.reset().play();
   }, [actions]);
+
+  // Astronaut: gentle drift + tumble so it reads as floating in space.
+  const astronaut = useMemo(() => scene.getObjectByName('astronaut_main') ?? null, [scene]);
+  const baseY = useRef(astronaut?.position.y ?? 0);
+  useFrame((state) => {
+    if (!astronaut) return;
+    const t = state.clock.elapsedTime;
+    astronaut.position.y = baseY.current + Math.sin(t * 0.6) * 0.25;
+    astronaut.rotation.y += 0.0015;
+    astronaut.rotation.z = Math.sin(t * 0.4) * 0.08;
+  });
 
   const handleOver = (e: ThreeEvent<PointerEvent>) => {
     if (resolveZone(e.object)) {

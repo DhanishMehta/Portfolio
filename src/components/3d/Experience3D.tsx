@@ -34,6 +34,15 @@ export default function Experience3D() {
     flyTo(zone);
   };
 
+  // Escape deselects the current item and returns to the hub overview.
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') navigate('hub');
+    };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, []);
+
   return (
     <div className="relative h-screen w-screen overflow-hidden bg-[#060D1F]">
       <Canvas
@@ -65,16 +74,16 @@ export default function Experience3D() {
           maxPolarAngle={Math.PI / 2.05}
         />
 
-        {/* Dark navy room: lift ambient + a warm key + cool space rim. */}
-        <ambientLight intensity={0.6} />
-        <directionalLight position={[-8, 10, -6]} intensity={0.8} color="#8fa6ff" />
-        <pointLight position={[2.5, 3, 6.5]} intensity={14} color="#F5A420" distance={12} />
-        <pointLight position={[5.5, 2, 6]} intensity={8} color="#ffd9a0" distance={9} />
+        {/* Cozy warm room: soft warm ambient + warm key, gentle desk pool, cool rim. */}
+        <ambientLight intensity={0.55} color="#fff1df" />
+        <directionalLight position={[-6, 9, -4]} intensity={0.7} color="#ffd9a8" />
+        <pointLight position={[2.5, 3.2, 6.5]} intensity={6} color="#ffb866" distance={10} />
+        <directionalLight position={[8, 6, 8]} intensity={0.25} color="#9fb6ff" />
 
         <Suspense fallback={null}>
           <World3D activeZone={activeZone} onSelectZone={navigate} />
           {/* environmentIntensity tames the bright HDRI so warm point lights read */}
-          <Environment files={HDRI_URL} environmentIntensity={0.5} />
+          <Environment files={HDRI_URL} environmentIntensity={0.35} />
           <CoffeeSteam />
         </Suspense>
 
@@ -83,7 +92,7 @@ export default function Experience3D() {
 
         {/* multisampling handles AA in one pass (cheaper than a separate SMAA pass) */}
         <EffectComposer multisampling={4}>
-          <Bloom luminanceThreshold={0.75} luminanceSmoothing={0.3} intensity={0.5} mipmapBlur />
+          <Bloom luminanceThreshold={0.9} luminanceSmoothing={0.3} intensity={0.4} mipmapBlur />
         </EffectComposer>
       </Canvas>
 

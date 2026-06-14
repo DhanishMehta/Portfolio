@@ -50,6 +50,8 @@ function renderZone(zone: ZoneKey) {
       return <AwardsPanel />;
     case 'arcade':
       return <ArcadePanel />;
+    case 'about':
+      return <AboutPanel />;
     case 'chill':
       return <ChillPanel />;
     default:
@@ -188,6 +190,38 @@ function AwardsPanel() {
           ))}
         </div>
       </div>
+    </div>
+  );
+}
+
+function AboutPanel() {
+  return (
+    <div className="space-y-4">
+      <h2 className="text-xl font-semibold text-text-primary">About Me</h2>
+      <p className="text-sm text-text-secondary">
+        I'm {config.name} — an {config.roles[0]} based in {config.location}. {config.tagline}
+      </p>
+      <p className="text-sm text-text-secondary">
+        I live on Chubb's Core AI team building the infrastructure that AI tools run on, ship
+        full-stack products end-to-end, and mentor engineers along the way. Outside the editor:
+        card magic, lo-fi, and the occasional Rubik's solve.
+      </p>
+      <div className="flex flex-wrap gap-2 pt-1">
+        {config.roles.map((r) => (
+          <span
+            key={r}
+            className="rounded-full border border-accent/30 px-3 py-1 font-mono text-[11px] text-accent"
+          >
+            {r}
+          </span>
+        ))}
+      </div>
+      <a
+        href={`mailto:${config.email}`}
+        className="inline-block font-mono text-xs text-accent hover:underline"
+      >
+        Say hi → {config.email}
+      </a>
     </div>
   );
 }
