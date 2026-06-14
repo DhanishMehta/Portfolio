@@ -65,15 +65,16 @@ export default function Experience3D() {
           maxPolarAngle={Math.PI / 2.05}
         />
 
-        {/* Cool rim from "space" + ambient lift; warm pools are baked into the GLB lights' intent. */}
-        <ambientLight intensity={0.35} />
-        <directionalLight position={[-8, 10, -6]} intensity={0.5} color="#6f8cff" />
-        <pointLight position={[3.5, 2, 7]} intensity={8} color="#F5A420" distance={9} />
+        {/* Dark navy room: lift ambient + a warm key + cool space rim. */}
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[-8, 10, -6]} intensity={0.8} color="#8fa6ff" />
+        <pointLight position={[2.5, 3, 6.5]} intensity={14} color="#F5A420" distance={12} />
+        <pointLight position={[5.5, 2, 6]} intensity={8} color="#ffd9a0" distance={9} />
 
         <Suspense fallback={null}>
-          <World3D onSelectZone={navigate} />
+          <World3D activeZone={activeZone} onSelectZone={navigate} />
           {/* environmentIntensity tames the bright HDRI so warm point lights read */}
-          <Environment files={HDRI_URL} environmentIntensity={0.35} />
+          <Environment files={HDRI_URL} environmentIntensity={0.5} />
           <CoffeeSteam />
         </Suspense>
 

@@ -1,11 +1,12 @@
 'use client';
 
 import { useEffect } from 'react';
-import { useGLTF, useAnimations } from '@react-three/drei';
+import { useGLTF, useAnimations, Html } from '@react-three/drei';
 import type { Object3D } from 'three';
 import type { ThreeEvent } from '@react-three/fiber';
 import { MODEL_URL, DRACO_PATH, OBJECT_TO_ZONE, type ZoneKey } from './constants3d';
 import { RubiksCube } from './RubiksCube';
+import { GameLauncher } from './games/GameLauncher';
 
 useGLTF.preload(MODEL_URL, DRACO_PATH);
 
@@ -21,10 +22,11 @@ function resolveZone(obj: Object3D | null): ZoneKey | null {
 }
 
 interface World3DProps {
+  activeZone: ZoneKey;
   onSelectZone: (zone: ZoneKey) => void;
 }
 
-export function World3D({ onSelectZone }: World3DProps) {
+export function World3D({ activeZone, onSelectZone }: World3DProps) {
   const { scene, animations } = useGLTF(MODEL_URL, DRACO_PATH);
   const { actions } = useAnimations(animations, scene);
 
@@ -61,8 +63,29 @@ export function World3D({ onSelectZone }: World3DProps) {
         onPointerOut={handleOut}
         onClick={handleClick}
       />
-      {/* Rubik's cube is intentionally NOT in the GLB — built procedurally. */}
-      <RubiksCube position={[1.3, 0.95, 6.6]} scale={0.18} />
+
+      {/* Rubik's cube — procedural, seated on the desk surface (desk top ≈ y1.0). */}
+      <RubiksCube position={[1.15, 1.18, 6.95]} scale={0.16} />
+
+      {/* The arcade game lives ON the cabinet screen. GameScreen_Plane center is at
+          three (6.26, 1.39, 7.0); its face normal points -x, so rotate to face -x.
+          Only mounted in the arcade zone to keep the game canvas idle otherwise. */}
+      {activeZone === 'arcade' && (
+        <Html
+          transform
+          position={[6.18, 1.39, 7.0]}
+          rotation={[0, -Math.PI / 2, 0]}
+          scale={0.0016}
+          distanceFactor={undefined}
+          occlude={false}
+          zIndexRange={[20, 0]}
+          style={{ width: 360, pointerEvents: 'auto' }}
+        >
+          <div className="rounded-md bg-[#060D1F] p-2 shadow-[0_0_30px_rgba(245,164,32,0.25)]">
+            <GameLauncher />
+          </div>
+        </Html>
+      )}
     </group>
   );
 }
