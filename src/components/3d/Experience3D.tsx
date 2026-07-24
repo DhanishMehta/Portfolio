@@ -16,7 +16,6 @@ import { NavigationBanner3D } from './NavigationBanner3D';
 import { ZoneContent } from './ZoneContent';
 import { HudExtras } from './HudExtras';
 import { AmbientParticles } from './effects/AmbientParticles';
-import { CoffeeSteam } from './effects/CoffeeSteam';
 import { useCamera3D } from '@/hooks/useCamera3D';
 import {
   CAMERA_POSITIONS,
@@ -79,13 +78,16 @@ export default function Experience3D() {
         <directionalLight position={[-5, 9, -3]} intensity={0.75} color="#ffd9a8" />
         <pointLight position={[1.0, 3.0, 7.0]} intensity={6} color="#ffba6e" distance={9} />
         <pointLight position={[2.4, 2.4, 5.0]} intensity={4.5} color="#ffc77d" distance={7} />
+        {/* Warm glow emitted from the desk table lamp (three ≈ [1.2, 1.5, 7.05]). */}
+        <pointLight position={[1.2, 1.5, 7.05]} intensity={3.2} color="#ffb24d" distance={3.5} decay={2} />
+        {/* Red neon glow behind the arcade cabinet (Blender light_arcade_neon, three ≈ [-1.96, 0.87, 5.68]). */}
+        <pointLight position={[-1.96, 0.87, 5.68]} intensity={5} color="#ff0008" distance={4} decay={2} />
         <directionalLight position={[6, 6, 2]} intensity={0.3} color="#9fb6ff" />
 
         <Suspense fallback={null}>
           <World3D activeZone={activeZone} onSelectZone={navigate} />
           {/* environmentIntensity tames the bright HDRI so warm point lights read */}
           <Environment files={HDRI_URL} environmentIntensity={0.35} />
-          <CoffeeSteam />
         </Suspense>
 
         <AmbientParticles />

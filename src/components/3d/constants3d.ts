@@ -22,8 +22,8 @@ export const CAMERA_POSITIONS: Record<string, CameraState> = {
   awards: { position: [4.04, 4.0, 5.3], target: [1.31, 2.4, 9.49] },
   arcade: { position: [1.7, 1.6, 5.7], target: [-1.49, 1.39, 5.7] },
   chill: { position: [5.11, 1.97, 1.66], target: [2.63, 0.5, 5.56] },
-  // Astronaut floats outside the room (three ≈ [-6, 3, 2]); fly out to meet it.
-  about: { position: [-1.5, 4.2, 4.2], target: [-5.97, 4.53, 2.34] },
+  // Astronaut floats in front of the room (three ≈ [2.3, 1.8, 4]); fly toward it.
+  about: { position: [6.5, 3.4, -0.5], target: [2.3, 1.8, 4.0] },
 };
 
 export type ZoneKey = keyof typeof CAMERA_POSITIONS;
@@ -31,10 +31,12 @@ export type ZoneKey = keyof typeof CAMERA_POSITIONS;
 // Maps an interactive mesh's named ancestor (from the GLB scene graph) to a zone.
 // Climb an Object3D's parents until one of these names is hit.
 export const OBJECT_TO_ZONE: Record<string, ZoneKey> = {
-  // Projects = the monitors; Experience = the desk itself (clear, distinct targets).
+  // Right monitor (Monitor / monitor_new_L) = Projects; left monitor (Monitor.001 /
+  // monitor_new_2) = Experience — each screen renders its own zone's UI (see Screens3D).
   monitor_new_L: 'projects',
-  monitor_new_2: 'projects',
   Monitor: 'projects',
+  monitor_new_2: 'experience',
+  'Monitor.001': 'experience',
   desk_modern: 'experience',
   robot_skills: 'skills',
   award_shelf: 'awards',

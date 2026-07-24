@@ -2,10 +2,11 @@
 
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { useGLTF, useAnimations, Html } from '@react-three/drei';
-import { Vector3, type Object3D } from 'three';
+import { Vector3, Box3, type Object3D } from 'three';
 import { useFrame, type ThreeEvent } from '@react-three/fiber';
 import { MODEL_URL, DRACO_PATH, OBJECT_TO_ZONE, ZONE_LABELS, type ZoneKey } from './constants3d';
 import { RubiksCube } from './RubiksCube';
+import { Screens3D } from './Screens3D';
 
 useGLTF.preload(MODEL_URL, DRACO_PATH);
 
@@ -38,6 +39,26 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
   // Astronaut: gentle drift + tumble so it reads as floating in space.
   const astronaut = useMemo(() => scene.getObjectByName('astronaut_main') ?? null, [scene]);
   const baseY = useRef(astronaut?.position.y ?? 0);
+  // Override its baked transform: scale down + park it dead-center in the landing
+  // view so it greets the viewer at eye level (not towering over the room).
+  // (hub camera looks down -x, so larger world-x reads as screen-LEFT)
+  const ASTRO_POS = useMemo(() => new Vector3(5.5, 2.6, 4.0), []);
+  useEffect(() => {
+    if (!astronaut) return;
+    astronaut.scale.setScalar(0.13);
+    astronaut.position.copy(ASTRO_POS);
+    baseY.current = ASTRO_POS.y;
+  }, [astronaut, ASTRO_POS]);
+
+  // Rubik's cube sits on top of the ottoman / coffee table.
+  const rubikPos = useMemo<[number, number, number]>(() => {
+    const t = scene.getObjectByName('OttomanCoffeTable1');
+    if (!t) return [2.27, 0.55, 4.96];
+    const box = new Box3().setFromObject(t);
+    const c = box.getCenter(new Vector3());
+    return [c.x, box.max.y + 0.13, c.z];
+  }, [scene]);
+
   useFrame((state) => {
     if (!astronaut) return;
     const t = state.clock.elapsedTime;
@@ -86,8 +107,11 @@ export function World3D({ activeZone, onSelectZone }: World3DProps) {
         onClick={handleClick}
       />
 
+      {/* Diegetic UI on the monitors + playable game on the arcade cabinet. */}
+      <Screens3D scene={scene} />
+
       {/* Rubik's cube — procedural, resting on the ottoman / coffee table in the chill corner. */}
-      <RubiksCube position={[2.27, 0.55, 4.96]} scale={0.085} />
+      <RubiksCube position={rubikPos} scale={0.085} />
 
       {/* Hover tooltip — names the zone under the cursor (Projects vs Experience, etc.). */}
       {hover && activeZone === 'hub' && (

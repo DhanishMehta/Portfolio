@@ -6,7 +6,6 @@ import { PROJECTS } from '@/data/projects.data';
 import { EXPERIENCE } from '@/data/experience.data';
 import { AWARDS } from '@/data/awards.data';
 import { ZONE_LABELS, type ZoneKey } from './constants3d';
-import { GameLauncher } from './games/GameLauncher';
 
 interface Props {
   zone: ZoneKey;
@@ -18,22 +17,41 @@ interface Props {
  * On-monitor <Html> embedding is a later visual enhancement; this keeps it legible.
  */
 export function ZoneContent({ zone }: Props) {
+  // Arcade is playable directly on the cabinet screen (see Screens3D), so the right
+  // panel is suppressed there — only a small, non-blocking hint is shown bottom-left.
   return (
     <AnimatePresence mode="wait">
-      {zone !== 'hub' && (
-        <motion.aside
-          key={zone}
-          initial={{ x: 60, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          exit={{ x: 60, opacity: 0 }}
+      {zone === 'arcade' ? (
+        <motion.div
+          key="arcade-hint"
+          initial={{ y: 20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          exit={{ y: 20, opacity: 0 }}
           transition={{ duration: 0.4, ease: 'easeOut' }}
-          className="pointer-events-auto absolute right-5 top-20 bottom-24 z-10 w-[min(420px,90vw)] overflow-y-auto rounded-2xl border border-white/10 bg-bg-base/80 p-6 backdrop-blur-xl shadow-2xl"
+          className="pointer-events-none absolute bottom-24 left-5 z-10 w-[min(300px,80vw)] rounded-2xl border border-white/10 bg-bg-base/70 p-4 backdrop-blur-xl shadow-2xl"
         >
-          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
-            {ZONE_LABELS[zone]}
+          <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">Arcade</p>
+          <p className="mt-2 text-sm text-text-secondary">
+            <span className="text-accent">Deploy Dash</span> is live on the cabinet — click it,
+            then press space (or tap) to jump the bugs.
           </p>
-          <div className="mt-4">{renderZone(zone)}</div>
-        </motion.aside>
+        </motion.div>
+      ) : (
+        zone !== 'hub' && (
+          <motion.aside
+            key={zone}
+            initial={{ x: 60, opacity: 0 }}
+            animate={{ x: 0, opacity: 1 }}
+            exit={{ x: 60, opacity: 0 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="pointer-events-auto absolute right-5 top-20 bottom-24 z-10 w-[min(420px,90vw)] overflow-y-auto rounded-2xl border border-white/10 bg-bg-base/80 p-6 backdrop-blur-xl shadow-2xl"
+          >
+            <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-accent">
+              {ZONE_LABELS[zone]}
+            </p>
+            <div className="mt-4">{renderZone(zone)}</div>
+          </motion.aside>
+        )
       )}
     </AnimatePresence>
   );
@@ -232,9 +250,16 @@ function ArcadePanel() {
     <div className="space-y-3">
       <h2 className="text-xl font-semibold text-text-primary">Arcade</h2>
       <p className="text-sm text-text-secondary">
-        Six mini-games themed on my actual work — the first is live. Play it here:
+        Six mini-games themed on my actual work — the first one,{' '}
+        <span className="text-accent">Deploy Dash</span>, is live and playable right on the
+        cabinet screen. Click it, then press space (or tap) to jump the bugs.
       </p>
-      <GameLauncher />
+      <ul className="space-y-1.5 font-mono text-[11px] text-text-secondary">
+        <li>▶ Deploy Dash — endless runner</li>
+        <li>◷ Bug Hunt — whack-a-mole (soon)</li>
+        <li>◷ Stack Attack — tech-logo Tetris (soon)</li>
+        <li>◷ Interview Scheduler — calendar puzzle (soon)</li>
+      </ul>
     </div>
   );
 }
