@@ -119,8 +119,8 @@ function ExperiencePanel() {
   return (
     <div className="space-y-5">
       <h2 className="text-xl font-semibold text-text-primary">Experience</h2>
-      {EXPERIENCE.map((e) => (
-        <div key={e.company} className="relative border-l border-bg-border pl-4">
+      {EXPERIENCE.map((e, i) => (
+        <div key={`${e.company}-${e.role}-${i}`} className="relative border-l border-bg-border pl-4">
           <span
             className={`absolute -left-[5px] top-1.5 h-2.5 w-2.5 rounded-full ${
               e.isCurrent ? 'bg-accent shadow-[0_0_8px] shadow-accent' : 'bg-text-secondary'
